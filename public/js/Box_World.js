@@ -7,7 +7,30 @@ var gridX = true;
 var gridY = false;
 var gridZ = false;
 var axes = true;
-var ground = true;
+var ground = false;
+
+var box;
+var Engine = (function(global) {
+    init();
+    setupGui();
+
+    box = new Box();
+    animate();
+})(this);
+
+function update(){
+    var now  = Date.now(),
+         dt  = (now - lastTime),
+         t   = (now - startTime);
+    lastTime = now;
+
+    box.update();
+}
+function animate() {
+    update();
+    render();
+    window.requestAnimationFrame(animate);
+}
 
 function fillScene() {
     scene = new THREE.Scene();
@@ -44,15 +67,15 @@ function fillScene() {
 } // end fillScene
 
 function init() {
-    var canvasWidth = window.innerWidth;
-    var canvasHeight = window.innerHeight;
-    var canvasRatio = canvasWidth / canvasHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    var canvasRatio = width / height;
 
     // RENDERER
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.gammaInput = true;
     renderer.gammaOutput = true;
-    renderer.setSize(canvasWidth, canvasHeight);
+    renderer.setSize(width, height);
     renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
     var container = document.getElementById('container');
@@ -69,10 +92,7 @@ function init() {
 
 }
 
-function animate() {
-    window.requestAnimationFrame(animate);
-    render();
-}
+
 
 function render() {
     var delta = clock.getDelta();
@@ -118,6 +138,4 @@ function setupGui() {
     h.add( effectController, "newAxes" ).name("Show axes");
 }
 
-init();
-setupGui();
-animate();
+
