@@ -13,7 +13,8 @@ var box;
 var Engine = (function(global) {
     init();
     setupGui();
-
+    communications = new Communications();
+    communications.connect();
     box = new Box();
     animate();
 })(this);
