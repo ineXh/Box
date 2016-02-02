@@ -14,9 +14,10 @@ Box.prototype = {
     },
     update: function(){
         //console.log('update')
-        this.count += PI/80;
+        /*this.count += PI/80;
         this.mesh.position.x = 50*Math.sin(this.count);
-        this.mesh.position.y = 50*Math.cos(this.count);
+        this.mesh.position.y = 50*Math.cos(this.count);*/
+        this.mesh.position.x = device.pos.x;
     }
 
 } // end Box

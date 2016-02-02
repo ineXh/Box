@@ -28,6 +28,7 @@ function update(){
          t   = (now - startTime);
     lastTime = now;
 
+    device.update();
     box.update();
 }
 function animate() {

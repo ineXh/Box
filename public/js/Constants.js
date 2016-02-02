@@ -1,5 +1,7 @@
 var PI = Math.PI;
+var damping = 0.99;
 var Light_Wood_Brown = 0xB69B4C;
+
 
 function ShapeType() {}
 ShapeType.Box = 0;
