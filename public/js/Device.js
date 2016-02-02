@@ -11,7 +11,15 @@ Device.prototype = {
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', device.deviceOrientationHandler.bind(device), true);
         }
-        this.pos = new THREE.Vector3(0, 0, 0);
+
+        // Material // MeshLambertMaterial //MeshBasicMaterial
+        this.material = new THREE.MeshBasicMaterial({
+            color: 0xAA0000 } );
+        this.geometry = new THREE.BoxGeometry( 20, 20, 20 );
+        this.mesh = new THREE.Mesh( this.geometry, this.material );
+        scene.add( this.mesh );
+
+        this.pos = new THREE.Vector3(0, 50, 0);
         this.vel = new THREE.Vector3(0, 0, 0);
         this.accel = new THREE.Vector3(0, 0, 0);
     },
@@ -20,6 +28,10 @@ Device.prototype = {
         this.vel.multiplyScalar(damping);
         this.pos.add(this.vel);
         this.accel.multiplyScalar(0);
+
+        this.mesh.position.x = this.pos.x;
+        this.mesh.position.y = this.pos.y;
+        this.mesh.position.z = this.pos.z;
     },
     deviceOrientationHandler : function(eventData){
         console.log('(' + eventData.alpha + ', '

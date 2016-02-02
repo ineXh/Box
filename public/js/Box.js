@@ -6,7 +6,6 @@ Box.prototype = {
         // Material // MeshLambertMaterial //MeshBasicMaterial
         this.material = new THREE.MeshLambertMaterial({
             color: Light_Wood_Brown } );
-
         this.geometry = new THREE.BoxGeometry( 50, 50, 50 );
         this.mesh = new THREE.Mesh( this.geometry, this.material );
         scene.add( this.mesh );
@@ -17,7 +16,9 @@ Box.prototype = {
         /*this.count += PI/80;
         this.mesh.position.x = 50*Math.sin(this.count);
         this.mesh.position.y = 50*Math.cos(this.count);*/
-        this.mesh.position.x = device.pos.x;
+        /*this.mesh.position.x = device.pos.x;
+        this.mesh.position.y = device.pos.y;
+        this.mesh.position.z = device.pos.z;*/
     }
 
 } // end Box
