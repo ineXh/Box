@@ -10,14 +10,24 @@ function webClient(io, server){
 
 function Main(socket){
     var client = {socket: socket,
-                room: null}
-    onConnect();
+                room: ''}
+    var main = this;
+    onConnect.call(this);
+    addListeners();
 
+    function addListeners(){
+        socket.on('move', onMove.bind(main));
+    }
     function onConnect(){
         console.log('A webClient has connected.');
-        socket.join('Global Chat')
-        client.room = 'Global Chat';
+        client.room = 'Global';
+        socket.join(client.room)
     }
-
 } // end Main
+
+
+function onMove(){
+    console.log('onMove');
+}
+
 

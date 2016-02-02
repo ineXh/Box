@@ -10,11 +10,14 @@ var axes = true;
 var ground = false;
 
 var box;
+var device;
 var Engine = (function(global) {
     init();
     setupGui();
     communications = new Communications();
     communications.connect();
+
+    device = new Device();
     box = new Box();
     animate();
 })(this);
