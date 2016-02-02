@@ -2,6 +2,10 @@
 
 var camera, scene, renderer;
 var cameraControls, effectController;
+var viewSize;
+var zoomFactor = 1;
+var aspectRatio;
+
 var clock = new THREE.Clock();
 var gridX = true;
 var gridY = false;
@@ -87,8 +91,15 @@ function init() {
     container.appendChild( renderer.domElement );
 
     // CAMERA
+    viewSize = 2;
     camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
+    /*camera = new THREE.OrthographicCamera(
+        -aspectRatio*viewSize / 2, aspectRatio*viewSize / 2,
+        viewSize / 2, -viewSize / 2,
+        -10000, 10000 );
+    */
     camera.position.set( -510, 240, 100 );
+    //camera.position.set( -890, 600, -480 );
     // CONTROLS
     cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
     cameraControls.target.set(0,100,0);
@@ -113,6 +124,13 @@ function render() {
 
         fillScene();
     }
+    camera.zoom = zoomFactor;
+    camera.updateProjectionMatrix();
+    /*camera.left = -aspectRatio*viewSize / 2;
+    camera.right = aspectRatio*viewSize / 2;
+    camera.top = viewSize / 2;
+    camera.bottom = -viewSize / 2;
+    camera.updateProjectionMatrix();*/
 
     renderer.render(scene, camera);
 }

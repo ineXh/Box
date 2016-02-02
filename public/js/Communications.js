@@ -8,7 +8,8 @@ Communications.prototype = {
             //if(communications.socket != undefined)
               //  communications.socket.io._reconnection =true;
 
-            communications.socket = io.connect('http://localhost:80/',
+            //communications.socket = io.connect('http://localhost:80/',
+            communications.socket = io.connect('http://75.1.30.179:80/',
                 {reconnection: false});
             setTimeout( function(){
                 if(communications.socket.connected){
